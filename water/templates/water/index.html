@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYDRATION REMINDER💙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'water/style.css' %}">
+<link rel="manifest" href="{% static 'water/manifest.json' %}">
+<meta name="theme-color" content="#1760be">
+
+
+
+</head>
+<body>
+    <h1>YOUR WATER TRACKER</h1>
+    <p>GLASSES DRUNK TODAY: <span id="count">0</span></p>
+    
+    <button onclick="addGlass()"> 🥤<span>Yes Yes, I Drank 🙄 </span></button>
+    
+    <div class="progress">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+    <p id="stageText">😴 Start drinking water!</p>
+
+    <img src="{% static 'water/watrer_caterpillar.avif' %}" alt="water photo" class="water-photo">
+
+    <script>
+        const dailyGoal = 8; // glasses per day
+        let waterCount = 0;
+        let goalReached = false; // track alert
+
+      const today = new Date().toDateString();
+      const savedDate = localStorage.getItem('date');
+      if (savedDate === today) {
+    waterCount = parseInt(localStorage.getItem('waterCount')) || 0;}
+    else {
+    waterCount = 0;
+    goalReached = false;
+    localStorage.setItem('date', today);
+    localStorage.setItem('waterCount', 0);
+}
+
+
+        updateUI();
+
+        function addGlass() {
+            waterCount++;
+            saveData();
+            updateUI();
+            alert("I LOVEEE YOUU DHARANIII!!!!🌝❤️");
+        }
+function updateUI() {
+    document.getElementById('count').innerText = waterCount;
+
+    const progressPercent = Math.min((waterCount / dailyGoal) * 100, 100);
+    const progressBar = document.getElementById('progressBar');
+    const stageText = document.getElementById('stageText');
+
+    progressBar.style.width = progressPercent + '%';
+    progressBar.innerText = Math.floor(progressPercent) + '%';
+
+        // 🎨 Change progress bar color by water count
+    if (waterCount <= 2) {
+        progressBar.style.backgroundColor = "#57cff3";
+    } else if (waterCount <= 4) {
+        progressBar.style.backgroundColor = "#157f9f";
+    } else {
+        progressBar.style.backgroundColor = "#1f5ccd";
+    }
+
+
+    // 🔹 Stage-based emoji + text (NEW)
+    if (waterCount === 0) {
+        stageText.innerText = "Innum kudikalaya 😭";
+    } 
+    else if (waterCount <= 2) {
+        stageText.innerText = "Haaa kudii kudii😃";
+    } 
+    else if (waterCount <= 4) {
+        stageText.innerText = "Sooper kudii😁";
+    } 
+    else if (waterCount <= 6) {
+        stageText.innerText = "Come on boochii🔥";
+    } 
+    else {
+        stageText.innerText = "Innum knjm kudikalam😗";
+    }
+
+    // ✅ EXISTING goal alert (UNCHANGED)
+    if (progressPercent === 100 && !goalReached) {
+        goalReached = true;
+        alert("vaazhthukkall dharniiii😘");
+    }
+}
+
+
+        function saveData() {
+            localStorage.setItem('waterCount', waterCount);
+            localStorage.setItem('date', new Date().toDateString());
+        }
+
+        // 2-hour reminder
+        const twoHours = 2 * 60 * 60 * 1000;
+        setInterval(() => {
+            alert("Time to drink🫗,Ammu..🤨");
+        }, twoHours);
+
+     
+/* midnight reset */
+setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === 0 && now.getMinutes() === 0) {
+        waterCount = 0;
+        goalReached = false;
+        saveData();
+        updateUI();
+    }
+}, 60000);
+
+/* service worker */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register("{% static 'water/sw.js'%}")
+    .then(() => console.log("Service Worker registered!"))
+    .catch((err) => console.log("Service Worker failed:", err));
+}
+</script>
+</html>

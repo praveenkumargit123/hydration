@@ -1,0 +1,74 @@
+.progress {
+    width: 100%;
+    max-width: 320px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    margin: 20px auto;
+    overflow: hidden;
+    display: block;
+    color: blue;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #1d70d5;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+    display: block;   /* 🔥 VERY IMPORTANT */
+}
+
+
+
+/* Optional styling for body & button */
+body {
+  background-color: #d6f2ff;
+  font-family: "Averia Gruesa Libre", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  color: blue;
+  text-align: center;
+   padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #1760be;
+    color: blue;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.water-photo {
+    width: 100px;
+    /* smaller */
+    height: 100px;
+    border-radius: 50%;
+    /* fully circular */
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+button {
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 10px auto;
+    width: fit-content;
+}
+span{
+    color: blue;
+     font-family: "Averia Gruesa Libre", system-ui;
+}

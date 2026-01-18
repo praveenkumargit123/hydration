@@ -1,0 +1,22 @@
+{
+  "id": "/remainder/",
+  "name": "Hydration Reminder 💙",
+  "short_name": "Water 💙",
+  "start_url": "/remainder/",
+  "display": "standalone",
+  "background_color": "#d6f2ff",
+  "theme_color": "#1760be",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/static/water/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/water/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
