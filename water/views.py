@@ -1,6 +1,10 @@
+# water/views.py
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+def index(request):
+    return render(request, 'water/index.html')
+
 def remainder(request):
-    return render(request,'water/index.html')
+    # You can use a different template if needed
+    return render(request, 'water/remainder.html')
